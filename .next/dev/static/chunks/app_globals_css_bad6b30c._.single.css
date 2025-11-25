@@ -2274,6 +2274,11 @@ body {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
+.shadow-primary-light {
+  --tw-shadow-color: hsl(var(--primary-light));
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
 .outline-none {
   outline-offset: 2px;
   outline: 2px solid #0000;
@@ -2637,6 +2642,10 @@ body {
   border-color: hsl(var(--secondary-light));
 }
 
+.hover\:border-primary:hover {
+  border-color: hsl(var(--primary));
+}
+
 .hover\:bg-accent:hover {
   background-color: hsl(var(--accent));
 }
@@ -2704,6 +2713,10 @@ body {
 
 .hover\:bg-transparent:hover {
   background-color: #0000;
+}
+
+.hover\:bg-secondary-dark:hover {
+  background-color: hsl(var(--secondary-dark));
 }
 
 .hover\:text-accent-foreground:hover {
