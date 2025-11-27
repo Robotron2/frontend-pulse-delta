@@ -2,7 +2,7 @@ import { useCreateMarket } from "@/hooks/useCreateMarket"
 import React from "react"
 
 // The component no longer needs props
-const Step3_Review: React.FC = () => {
+const Step4_Review: React.FC = () => {
 	// Retrieve all formData from context
 	const { formData } = useCreateMarket()
 
@@ -45,4 +45,4 @@ const Step3_Review: React.FC = () => {
 	)
 }
 
-export default Step3_Review
+export default Step4_Review

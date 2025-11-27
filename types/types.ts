@@ -26,7 +26,12 @@ export interface MarketCategoryCardProps {
 	onClick?: () => void
 }
 
-// Create form context
+export interface MarketOutcome {
+	id: string
+	option: string
+	description: string
+}
+
 export interface MarketFormData {
 	marketCategory: string
 	marketType: string
@@ -34,8 +39,10 @@ export interface MarketFormData {
 	description: string
 	tradingFee: number
 	liquidity: number
-	resolutionSource?: string
-	resolutionDate?: string
+	resolutionSource: string
+	resolutionDate: string
+	// Multi-outcome specific
+	outcomes?: MarketOutcome[]
 }
 
 export interface MarketStep {
@@ -49,7 +56,7 @@ export interface CreateMarketContextType {
 	currentStep: number
 	totalSteps: number
 	marketSteps: MarketStep[]
-	handleFormChange: (field: keyof MarketFormData, value: string | number) => void
+	handleFormChange: (field: keyof MarketFormData, value: MarketFormData[keyof MarketFormData]) => void
 	handleNext: () => void
 	handleBack: () => void
 	handleSubmit: (e: React.FormEvent) => void

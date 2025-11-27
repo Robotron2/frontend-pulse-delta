@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useCreateMarket } from "@/hooks/useCreateMarket"
 import { MarketFormData } from "@/types/types"
 
-const Step2_MarketDetails: React.FC = () => {
+const Step3_MarketDetails: React.FC = () => {
 	const { formData, handleFormChange } = useCreateMarket()
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -139,4 +139,4 @@ const Step2_MarketDetails: React.FC = () => {
 	)
 }
 
-export default Step2_MarketDetails
+export default Step3_MarketDetails
