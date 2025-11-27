@@ -1,3 +1,4 @@
+import { TYPE_BADGE_STYLES } from "@/data/constants"
 import { Market } from "@/types/types"
 import { ChartColumn, Clock5, User } from "lucide-react"
 
@@ -12,9 +13,13 @@ export default function MarketCard({ market }: { market: Market }) {
 			<div className="inner wavy-box mt-4 flex flex-col w-full mx-auto">
 				{/* Tags & Participants Row */}
 				<div className="flex justify-between items-center w-full px-3 sm:px-4 pt-4 sm:pt-6">
-					<div className="category text-xs font-medium rounded-md bg-gray-800 text-gray-300 px-2 py-0.5">
+					<div
+						className={`text-xs font-medium rounded-md px-2 py-0.5
+    ${TYPE_BADGE_STYLES[market.type] ?? "bg-gray-800 text-gray-300"}
+  `}>
 						{market.type}
 					</div>
+
 					<div className="participants flex items-center gap-1 text-primary-gray">
 						<User width={16} height={16} />
 						<span className="text-sm">{market.participants}</span>

@@ -19,6 +19,13 @@ export interface MarketTypeCardProps {
 	onClick?: () => void
 }
 
+export interface MarketFiltersProps {
+	activeStatus: string
+	onStatusChange: (status: string) => void
+	activeType: string
+	onTypeChange: (type: string) => void
+}
+
 export interface MarketCategoryCardProps {
 	iconUrl: string
 	title: string
