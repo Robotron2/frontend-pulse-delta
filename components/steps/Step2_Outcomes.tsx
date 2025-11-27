@@ -40,18 +40,10 @@ const Step2_Outcomes: React.FC = () => {
 
 	return (
 		<div className="w-full max-w-3xl mx-auto">
-			{/* Header */}
-			<div className="text-center mb-8">
-				<h2 className="text-2xl font-semibold text-white mb-2">Market Details</h2>
-				<p className="text-gray-400 text-sm">
-					Provide clear and specific information about your prediction market
-				</p>
-			</div>
-
-			<div className="space-y-6">
+			<div className="container space-y-2.5">
 				{/* Outcomes */}
 				{outcomes.map((outcome, index) => (
-					<div key={outcome.id} className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 space-y-4">
+					<div key={outcome.id} className="p-4 space-y-1.5">
 						<div className="flex items-center justify-between">
 							<h3 className="text-lg font-semibold text-white">Outcome {index + 1}</h3>
 							{outcomes.length > 2 && (
@@ -68,18 +60,13 @@ const Step2_Outcomes: React.FC = () => {
 
 						{/* Option Name */}
 						<div>
-							<label
-								htmlFor={`option-${outcome.id}`}
-								className="block text-sm font-medium text-gray-300 mb-2">
-								Option {String.fromCharCode(65 + index)}
-							</label>
 							<Input
 								id={`option-${outcome.id}`}
 								placeholder={`e.g., Option ${String.fromCharCode(65 + index)}`}
 								value={outcome.option}
 								onChange={(e) => handleOutcomeChange(outcome.id, "option", e.target.value)}
 								onKeyDown={handleKeyDown}
-								className="bg-zinc-900 border-zinc-800 text-white placeholder:text-gray-500 focus:border-orange-500 focus:ring-orange-500"
+								className="bg-secondary-dark border-secondary-light text-white placeholder:text-gray-500 w-full"
 							/>
 						</div>
 
@@ -97,7 +84,7 @@ const Step2_Outcomes: React.FC = () => {
 								onChange={(e) => handleOutcomeChange(outcome.id, "description", e.target.value)}
 								onKeyDown={handleKeyDown}
 								rows={2}
-								className="bg-zinc-900 border-zinc-800 text-white placeholder:text-gray-500 focus:border-orange-500 focus:ring-orange-500 resize-none"
+								className="bg-secondary-dark border-secondary-light text-white placeholder:text-gray-500 resize-none w-full"
 							/>
 						</div>
 					</div>
@@ -105,14 +92,16 @@ const Step2_Outcomes: React.FC = () => {
 
 				{/* Add Outcome Button */}
 				{outcomes.length < 10 && (
-					<Button
-						type="button"
-						onClick={addOutcome}
-						variant="outline"
-						className="w-full border-dashed border-2 border-zinc-700 hover:border-orange-500 hover:bg-orange-500/10 text-gray-400 hover:text-orange-500">
-						<Plus className="w-4 h-4 mr-2" />
-						Add Outcome (max 10)
-					</Button>
+					<div className="flex justify-center items-center">
+						<Button
+							type="button"
+							onClick={addOutcome}
+							variant="outline"
+							className="w-1/2 border-dashed border-2 border-secondary-light hover:border-primary hover:bg-primary-dark text-gray-500 hover:text-primary-foreground transition-colors duration-300">
+							<Plus className="w-4 h-4 mr-2" />
+							Add Outcome (min2, max 10)
+						</Button>
+					</div>
 				)}
 			</div>
 		</div>
