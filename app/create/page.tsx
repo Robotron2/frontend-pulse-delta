@@ -6,17 +6,71 @@ import { Button } from "@/components/ui/button"
 import { useCreateMarket } from "@/hooks/useCreateMarket"
 import Step0_CategorySelection from "@/components/steps/Step0_CategorySelection"
 import Step1_TypeSelection from "@/components/steps/Step1_TypeSelection"
+import Step2_MarketDetails from "@/components/steps/Step2_MarketDetails"
 import Step2_Outcomes from "@/components/steps/Step2_Outcomes"
-import Step3_MarketDetails from "@/components/steps/Step3_MarketDetails"
 import Step4_Review from "@/components/steps/Step4_Review"
 
 const CreateMarket: React.FC = () => {
 	const { currentStep, totalSteps, marketSteps, formData, handleNext, handleBack, handleSubmit } = useCreateMarket()
 
-	const currentStepData = useMemo(
-		() => marketSteps.find((step) => step.id === currentStep),
-		[currentStep, marketSteps]
-	)
+	const currentStepData = useMemo(() => {
+		const isMultiOutcome = formData.marketType === "multi"
+
+		// Manually map step data based on current step and market type
+		if (isMultiOutcome) {
+			switch (currentStep) {
+				case 1:
+					return {
+						title: "Market Category",
+						description: "Select the best structure for your prediction market.",
+					}
+				case 2:
+					return {
+						title: "Market Type",
+						description: "Select the outcome format for your prediction market.",
+					}
+				case 3:
+					return {
+						title: "Market Details",
+						description: "Provide clear and specific information about your prediction market",
+					}
+				case 4:
+					return { title: "Market Outcomes", description: "Define the possible outcomes for your market." }
+				case 5:
+					return {
+						title: "Review & Deploy",
+						description: "Final check before deploying your immutable market.",
+					}
+				default:
+					return { title: "", description: "" }
+			}
+		} else {
+			switch (currentStep) {
+				case 1:
+					return {
+						title: "Market Category",
+						description: "Select the best structure for your prediction market.",
+					}
+				case 2:
+					return {
+						title: "Market Type",
+						description: "Select the outcome format for your prediction market.",
+					}
+				case 3:
+					return {
+						title: "Market Details",
+						description: "Provide clear and specific information about your prediction market",
+					}
+				case 4:
+					return {
+						title: "Review & Deploy",
+						description: "Final check before deploying your immutable market.",
+					}
+				default:
+					return { title: "", description: "" }
+			}
+		}
+	}, [currentStep, formData.marketType])
 
 	// Validation function for each step
 	const isStepValid = useMemo(() => {
@@ -30,38 +84,23 @@ const CreateMarket: React.FC = () => {
 			case 2: // Step 1: Market Type Selection
 				return formData.marketType !== "" && formData.marketType !== undefined
 
-			case 3: // Step 2: Outcomes (only for multi-outcome) OR Market Details
+			case 3: // Step 2: Market Details (for all types)
+				return (
+					formData.question &&
+					formData.question.trim() !== "" &&
+					formData.liquidity &&
+					Number(formData.liquidity) >= 100 &&
+					formData.resolutionSource &&
+					formData.resolutionSource.trim() !== "" &&
+					formData.resolutionDate &&
+					formData.resolutionDate.trim() !== ""
+				)
+
+			case 4: // Step 3: Outcomes (only for multi) OR Review (for binary/scalar)
 				if (isMultiOutcome) {
-					// Validate outcomes: at least 2 outcomes with non-empty options
+					// This is Outcomes for multi-outcome - validate at least 2 outcomes
 					const validOutcomes = formData.outcomes?.filter((o) => o.option.trim() !== "") || []
 					return validOutcomes.length >= 2
-				} else {
-					// This is Market Details for binary/scalar
-					return (
-						formData.question &&
-						formData.question.trim() !== "" &&
-						formData.liquidity &&
-						Number(formData.liquidity) >= 100 &&
-						formData.resolutionSource &&
-						formData.resolutionSource.trim() !== "" &&
-						formData.resolutionDate &&
-						formData.resolutionDate.trim() !== ""
-					)
-				}
-
-			case 4: // Step 3: Market Details (for multi) OR Review (for binary/scalar)
-				if (isMultiOutcome) {
-					// This is Market Details for multi-outcome
-					return (
-						formData.question &&
-						formData.question.trim() !== "" &&
-						formData.liquidity &&
-						Number(formData.liquidity) >= 100 &&
-						formData.resolutionSource &&
-						formData.resolutionSource.trim() !== "" &&
-						formData.resolutionDate &&
-						formData.resolutionDate.trim() !== ""
-					)
 				} else {
 					// This is Review for binary/scalar - validate everything
 					return (
@@ -103,7 +142,7 @@ const CreateMarket: React.FC = () => {
 	const renderStepContent = () => {
 		const isMultiOutcome = formData.marketType === "multi"
 
-		// Multi-outcome render
+		// Adjust rendering based on whether it's multi-outcome
 		if (isMultiOutcome) {
 			switch (currentStep) {
 				case 1:
@@ -111,9 +150,9 @@ const CreateMarket: React.FC = () => {
 				case 2:
 					return <Step1_TypeSelection />
 				case 3:
-					return <Step2_Outcomes />
+					return <Step2_MarketDetails />
 				case 4:
-					return <Step3_MarketDetails />
+					return <Step2_Outcomes />
 				case 5:
 					return <Step4_Review />
 				default:
@@ -127,7 +166,7 @@ const CreateMarket: React.FC = () => {
 				case 2:
 					return <Step1_TypeSelection />
 				case 3:
-					return <Step3_MarketDetails />
+					return <Step2_MarketDetails />
 				case 4:
 					return <Step4_Review />
 				default:

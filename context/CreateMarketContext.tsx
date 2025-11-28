@@ -4,12 +4,12 @@ import React, { useState, useMemo, createContext, useCallback } from "react"
 export const BASE_MARKET_STEPS: MarketStep[] = [
 	{ id: 1, title: "Market Category", description: "Select the best structure for your prediction market." },
 	{ id: 2, title: "Market Type", description: "Select the outcome format for your prediction market." },
-	{ id: 3, title: "Market Outcomes", description: "Define the possible outcomes for your market." }, // Conditional step
 	{
-		id: 4,
+		id: 3,
 		title: "Market Details",
 		description: "Provide clear and specific information about your prediction market",
 	},
+	{ id: 4, title: "Market Outcomes", description: "Define the possible outcomes for your market." }, // Conditional step - after details
 	{ id: 5, title: "Review & Deploy", description: "Final check before deploying your immutable market." },
 ]
 
@@ -29,6 +29,7 @@ export const initialFormData: MarketFormData = {
 	],
 }
 
+// Create the Context, initialized to undefined
 export const CreateMarketContext = createContext<CreateMarketContextType | undefined>(undefined)
 
 export const CreateMarketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -102,7 +103,7 @@ export const CreateMarketProvider: React.FC<{ children: React.ReactNode }> = ({ 
 				liquidity: formData.liquidity,
 				resolutionSource: formData.resolutionSource,
 				resolutionDate: formData.resolutionDate,
-				// Outcomes for multi-outcome markets
+				// Only include outcomes for multi-outcome markets
 				...(formData.marketType === "multi" && {
 					outcomes: formData.outcomes?.filter((o) => o.option.trim() !== ""),
 				}),
