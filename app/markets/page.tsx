@@ -12,6 +12,7 @@ const Markets = () => {
 	const [type, setType] = useState("All Market")
 	const [page, setPage] = useState(1)
 	const [loading, setLoading] = useState(true)
+	const [imageLoaded, setImageLoaded] = useState(false)
 	const [displayed, setDisplayed] = useState([] as typeof dummyMarkets)
 
 	const PAGE_SIZE = 6
@@ -75,8 +76,26 @@ const Markets = () => {
 				</div>
 
 				{/* Banner Image */}
-				<div className="relative p-6 mt-8 rounded-xl border border-gradient overflow-hidden w-full hidden md:block h-[180px] sm:h-[260px] md:h-[350px] lg:h-[450px] bg-transparent">
-					<Image src="/markets.png" alt="banner" fill className="object-cover object-center" sizes="100vw" />
+				<div className="relative p-6 mt-8 rounded-xl border border-gradient overflow-hidden w-full hidden md:block h-[180px] sm:h-[260px] md:h-[350px] lg:h-[450px] bg-zinc-900">
+					{/* Loading skeleton */}
+					{!imageLoaded && (
+						<div className="absolute inset-0 bg-gradient-to-r from-zinc-800 via-zinc-700 to-zinc-800 animate-pulse" />
+					)}
+
+					<Image
+						src="/markets.png"
+						alt="banner"
+						fill
+						className={`object-cover object-center transition-opacity duration-500 ${
+							imageLoaded ? "opacity-100" : "opacity-0"
+						}`}
+						sizes="(max-width: 768px) 0vw, (max-width: 1024px) 100vw, 1200px"
+						priority
+						quality={85}
+						placeholder="blur"
+						blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxRjFGMUYiLz48L3N2Zz4="
+						onLoad={() => setImageLoaded(true)}
+					/>
 					<div className="overlay absolute top-0 left-0 w-full h-full bg-black/10" />
 				</div>
 				{/* Markets */}
