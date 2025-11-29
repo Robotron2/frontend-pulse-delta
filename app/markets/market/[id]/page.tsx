@@ -63,18 +63,18 @@ export default function MarketDetailPage({ params }: MarketDetailPageProps) {
 				<div className="flex justify-between items-center mb-6">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-700 hover:border-gray-600 transition text-gray-300 hover:text-white">
+						className="flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary-foreground transition text-foreground hover:text-white">
 						<ChevronLeft className="w-4 h-4" />
 						Back
 					</button>
 
 					<button
 						onClick={handleCopyLink}
-						className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-700 hover:border-gray-600 transition text-gray-300 hover:text-white">
+						className="flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary-foreground transition text-foreground hover:text-white">
 						{copied ? (
 							<>
-								<Check className="w-4 h-4 text-green-500" />
-								<span className="text-green-500">Copied!</span>
+								<Check className="w-4 h-4 text-success" />
+								<span className="text-success">Copied!</span>
 							</>
 						) : (
 							<>

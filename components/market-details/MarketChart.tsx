@@ -85,9 +85,9 @@ export default function MarketChart({ market }: MarketChartProps) {
 				ticks: {
 					color: "#6B7280",
 				},
-				grid: {
-					color: "#374151",
-				},
+				// grid: {
+				// 	color: "#374151",
+				// },
 			},
 		},
 		interaction: {
@@ -98,7 +98,7 @@ export default function MarketChart({ market }: MarketChartProps) {
 	}
 
 	return (
-		<div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
+		<div className="bg-secondary-dark border border-secondary-light rounded-xl p-6">
 			<h2 className="text-xl font-bold text-white mb-4">Price Movement</h2>
 			<div className="h-[300px] md:h-[400px]">
 				<Line data={generateChartData()} options={options} />

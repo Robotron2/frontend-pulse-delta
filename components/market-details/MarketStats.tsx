@@ -32,7 +32,7 @@ export default function MarketStats({ market }: MarketStatsProps) {
 	return (
 		<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 			{stats.map((stat, index) => (
-				<div key={index} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+				<div key={index} className="bg-secondary-dark border border-secondary-light rounded-xl p-4">
 					<div className="flex items-center gap-2 text-gray-400 mb-2">
 						{stat.icon}
 						<span className="text-sm">{stat.label}</span>
