@@ -1,6 +1,6 @@
 import { Market } from "@/types/types"
 
-export const markets: Market[] = Array.from({ length: 39 }).map((_, idx) => {
+export const markets: Market[] = Array.from({ length: 100 }).map((_, idx) => {
 	const statuses = ["trending", "ending-soon", "high-value", "newest", "closed"] as const
 	const types = ["Crypto", "Entertainment", "Sports", "Politics", "Weather", "Other"] as const
 	const marketTypes = ["binary", "multi", "scalar"] as const
