@@ -40,11 +40,11 @@ const Step2_Outcomes: React.FC = () => {
 
 	return (
 		<div className="w-full max-w-3xl mx-auto">
-			<div className="container space-y-2.5">
+			<div className="space-y-4">
 				{/* Outcomes */}
 				{outcomes.map((outcome, index) => (
-					<div key={outcome.id} className="p-4 space-y-1.5">
-						<div className="flex items-center justify-between">
+					<div key={outcome.id} className="space-y-4 ">
+						<div className="flex items-center justify-between -mb-3">
 							<h3 className="text-lg font-semibold text-white">Outcome {index + 1}</h3>
 							{outcomes.length > 2 && (
 								<Button
@@ -57,51 +57,45 @@ const Step2_Outcomes: React.FC = () => {
 								</Button>
 							)}
 						</div>
+						<div className="flex flex-col gap-2">
+							{/* Option Name */}
+							<div>
+								<Input
+									id={`option-${outcome.id}`}
+									placeholder={`Option ${String.fromCharCode(65 + index)}`}
+									value={outcome.option}
+									onChange={(e) => handleOutcomeChange(outcome.id, "option", e.target.value)}
+									onKeyDown={handleKeyDown}
+									className="bg-secondary-dark border-secondary-light text-white placeholder:text-gray-500"
+								/>
+							</div>
 
-						{/* Option Name */}
-						<div>
-							<Input
-								id={`option-${outcome.id}`}
-								placeholder={`e.g., Option ${String.fromCharCode(65 + index)}`}
-								value={outcome.option}
-								onChange={(e) => handleOutcomeChange(outcome.id, "option", e.target.value)}
-								onKeyDown={handleKeyDown}
-								className="bg-secondary-dark border-secondary-light text-white placeholder:text-gray-500 w-full"
-							/>
-						</div>
-
-						{/* Description (Optional) */}
-						<div>
-							<label
-								htmlFor={`description-${outcome.id}`}
-								className="block text-sm font-medium text-gray-300 mb-2">
-								Description (optional)
-							</label>
-							<Textarea
-								id={`description-${outcome.id}`}
-								placeholder="Provide additional context for this outcome"
-								value={outcome.description}
-								onChange={(e) => handleOutcomeChange(outcome.id, "description", e.target.value)}
-								onKeyDown={handleKeyDown}
-								rows={2}
-								className="bg-secondary-dark border-secondary-light text-white placeholder:text-gray-500 resize-none w-full"
-							/>
+							{/* Description (Optional) */}
+							<div>
+								<Textarea
+									id={`description-${outcome.id}`}
+									placeholder="Description (optional)"
+									value={outcome.description}
+									onChange={(e) => handleOutcomeChange(outcome.id, "description", e.target.value)}
+									onKeyDown={handleKeyDown}
+									rows={2}
+									className="bg-secondary-dark border-secondary-light text-white placeholder:text-gray-500 resize-none"
+								/>
+							</div>
 						</div>
 					</div>
 				))}
 
 				{/* Add Outcome Button */}
 				{outcomes.length < 10 && (
-					<div className="flex justify-center items-center">
-						<Button
-							type="button"
-							onClick={addOutcome}
-							variant="outline"
-							className="w-1/2 border-dashed border-2 border-secondary-light hover:border-primary hover:bg-primary-dark text-gray-500 hover:text-primary-foreground transition-colors duration-300">
-							<Plus className="w-4 h-4 mr-2" />
-							Add Outcome (min2, max 10)
-						</Button>
-					</div>
+					<Button
+						type="button"
+						onClick={addOutcome}
+						variant="outline"
+						className="w-56 border-dashed border-2 border-secondary-light hover:border-primary hover:bg-primary-dark text-gray-400 hover:text-primary-foreground transition-colors duration-300">
+						<Plus className="w-4 h-4 mr-2" />
+						Add Outcome (max 10)
+					</Button>
 				)}
 			</div>
 		</div>
