@@ -10,7 +10,7 @@ interface MarketGridProps {
 export default function MarketGrid({ markets, loading }: MarketGridProps) {
 	if (loading) {
 		return (
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
 				{[...Array(6)].map((_, i) => (
 					<MarketSkeleton key={i} />
 				))}

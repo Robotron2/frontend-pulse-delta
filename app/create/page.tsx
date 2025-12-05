@@ -242,7 +242,7 @@ const CreateMarket: React.FC = () => {
 								<Button
 									type="button"
 									onClick={handleBackClick}
-									className="bg-transparent border border-secondary-light text-foreground shadow-none">
+									className="w-36 bg-transparent border border-secondary-light text-foreground shadow-none">
 									Previous
 								</Button>
 							)}
@@ -252,8 +252,8 @@ const CreateMarket: React.FC = () => {
 									type="button"
 									onClick={handleNextClick}
 									disabled={!isStepValid}
-									className="bg-primary hover:bg-transparent hover:border hover:border-secondary-light disabled:opacity-50 disabled:cursor-not-allowed">
-									Next Step
+									className="w-36 bg-primary hover:bg-transparent hover:border hover:border-secondary-light disabled:opacity-50 disabled:cursor-not-allowed">
+									Next
 									<ChevronsRight className="h-4 w-4 ml-2" />
 								</Button>
 							) : (

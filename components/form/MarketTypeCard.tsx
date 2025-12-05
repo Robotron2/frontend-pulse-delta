@@ -12,7 +12,7 @@ export const MarketTypeCard: React.FC<MarketTypeCardProps> = ({
 	return (
 		<div
 			className={`
-				relative p-6 py-14 rounded-xl cursor-pointer transition-all duration-300
+				relative p-6 py-14 rounded-xl cursor-pointer transition-all duration-300 md:h-[496px] flex flex-col gap-y-4
 				border-2 group hover:border-primary-dark bg-secondary-dark
 				${isSelected ? "border-primary-dark border-[3px]" : " border-secondary-light"}
 			`}
@@ -36,13 +36,13 @@ export const MarketTypeCard: React.FC<MarketTypeCardProps> = ({
 			</div>
 
 			{/* Example Section */}
-			<div className="mb-3">
+			<div className="mb-2">
 				<p className="text-sm font-bold uppercase mb-1">Example:</p>
 				<p className="text-sm font-normal leading-relaxed">{question}</p>
 			</div>
 
 			{/* Outcome Pills */}
-			<div className="my-5">
+			<div className="my-3">
 				<p className="text-sm font-bold uppercase mb-2">Outcome</p>
 				<div className="flex flex-wrap gap-2">
 					{title === "Binary Number" && (

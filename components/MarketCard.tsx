@@ -69,7 +69,7 @@ export default function MarketCard({ market }: { market: Market }) {
 
 	return (
 		<Link href={`/markets/market/${market.id}`} className="block">
-			<div className="flex flex-col items-center p-6 pb-0 rounded-xl border border-gray-800 hover:border-primary-light hover:shadow-md hover:shadow-primary-light transition-all cursor-pointer">
+			<div className="flex flex-col items-center p-6 pb-0 rounded-xl border hover:border-primary-light hover:shadow-md hover:shadow-primary-light transition-all cursor-pointer">
 				{/* Title */}
 				<h3 className="text-xl text-white font-medium text-center">{market.title}</h3>
 
