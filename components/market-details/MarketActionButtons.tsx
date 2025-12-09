@@ -102,7 +102,7 @@ export default function MarketActionButtons({ market, onOptionSelect }: MarketAc
 							key={index}
 							onClick={() => onOptionSelect(outcome.option)}
 							className={cn(
-								"group relative flex items-center justify-between rounded-xl p-2 transition-all duration-300",
+								"group relative flex items-center justify-between rounded-xl p-4 transition-all duration-300",
 								"bg-black border border-white/10", // Default Base
 								"w-full md:w-2/3", // Layout width
 								isEven ? "md:justify-self-start" : "md:justify-self-end",
