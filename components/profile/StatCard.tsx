@@ -10,7 +10,7 @@ interface StatCardProps {
 
 export default function StatCard({ label, value, icon, iconColorClass }: StatCardProps) {
 	return (
-		<div className="bg-[#09090b] border border-white/5 rounded-2xl p-5 flex items-center justify-between transition-all hover:border-white/10">
+		<div className="bg-secondary-dark border border-secondary-light rounded-2xl p-10 flex items-center justify-between transition-all hover:border-white/10">
 			<div className="flex flex-col gap-1">
 				<span className="text-xs font-medium text-gray-400">{label}</span>
 				<span className="text-xl font-bold text-white tracking-wide">{value}</span>
