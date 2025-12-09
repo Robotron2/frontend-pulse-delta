@@ -1,7 +1,7 @@
 "use client"
 
 import { markets } from "@/data/markets"
-import { ChevronLeft, Copy } from "lucide-react"
+import { Check, ChevronLeft, Copy } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState, use } from "react"
 import { notFound } from "next/navigation"
@@ -52,45 +52,50 @@ export default function MarketDetailPage({ params }: MarketDetailPageProps) {
 					<button
 						onClick={() => router.back()}
 						className="
-            group flex items-center gap-2 px-4 py-2 rounded-xl border border-transparent 
+            group flex items-center justify-center gap-2 
+            p-2 sm:px-4 sm:py-2 rounded-xl border border-transparent 
             text-gray-400 transition-all duration-300
             hover:border-orange-500 hover:text-orange-500 hover:bg-white/5
-        ">
-						{/* Icon inherits color from text-gray-400 -> hover:text-orange-500 */}
-						<ChevronLeft className="w-5 h-5 transition-colors" />
-						<span className="font-medium">Back</span>
+        "
+						aria-label="Go Back">
+						<ChevronLeft className="w-6 h-6 sm:w-5 sm:h-5 transition-colors" />
+						{/* Text hidden on mobile, visible on small screens and up */}
+						<span className="hidden sm:inline font-medium">Back</span>
 					</button>
 
-					<div className="flex items-center gap-4">
+					<div className="flex items-center gap-3 sm:gap-4">
 						{/* COPY LINK BUTTON */}
 						<button
 							onClick={handleCopyLink}
 							className="
-                group flex items-center gap-2 px-4 py-2 rounded-xl border border-transparent 
+                group flex items-center justify-center gap-2 
+                p-2 sm:px-4 sm:py-2 rounded-xl border border-transparent 
                 text-gray-400 transition-all duration-300
                 hover:border-orange-500 hover:text-orange-500 hover:bg-white/5
-            ">
+            "
+							aria-label="Copy Link">
 							{copied ? (
 								<>
-									<Copy className="w-4 h-4 text-primary" />
-									<span className="text-primary font-medium">Copied</span>
+									<Check className="w-5 h-5 sm:w-4 sm:h-4 text-primary" />
+									<span className="hidden sm:inline text-primary font-medium">Copied</span>
 								</>
 							) : (
 								<>
-									<Copy className="w-4 h-4 transition-colors" />
-									<span className="font-medium">Copy Link</span>
+									<Copy className="w-5 h-5 sm:w-4 sm:h-4 transition-colors" />
+									<span className="hidden sm:inline font-medium">Copy Link</span>
 								</>
 							)}
 						</button>
 
-						{/* TRADE SHARE BUTTON */}
+						{/* TRADE SHARE BUTTON - Kept full width for CTA visibility */}
 						<button
 							onClick={handleTradeShare}
 							className="
                 bg-primary hover:bg-primary-dark
-                text-white font-bold text-sm px-6 py-2.5 
-                rounded-xl 
-                transition-all transform active:scale-95
+                text-white font-bold text-sm 
+                px-4 py-2.5 sm:px-6 
+                rounded-xl shadow-[0_4px_14px_0_rgba(249,115,22,0.39)] 
+                transition-all transform active:scale-95 whitespace-nowrap
             ">
 							Trade Share
 						</button>
