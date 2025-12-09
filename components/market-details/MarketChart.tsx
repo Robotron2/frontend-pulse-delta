@@ -96,14 +96,18 @@ export default function MarketChart({ market }: MarketChartProps) {
 
 	return (
 		<div className="bg-secondary-dark border border-secondary-light rounded-2xl p-6 w-full h-full min-h-[400px]">
-			<div className="flex justify-between items-center mb-6">
+			<div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 				<h2 className="text-lg font-medium text-gray-200">Price Movement</h2>
 
-				<div className="flex items-center gap-4">
+				{/* Legend Container */}
+				<div className="flex flex-wrap items-center gap-x-4 gap-y-2">
 					{chartConfig.map((item, index) => (
 						<div key={index} className="flex items-center gap-2">
-							<div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-							<span className="text-xs font-medium text-gray-400">{item.label}</span>
+							<div
+								className="w-3 h-3 rounded-full flex-shrink-0"
+								style={{ backgroundColor: item.color }}
+							/>
+							<span className="text-xs font-medium text-gray-400 whitespace-nowrap">{item.label}</span>
 						</div>
 					))}
 				</div>
