@@ -2,7 +2,7 @@ import { StatCard } from "@/components/StatCard"
 import { FeatureCard } from "@/components/FeatureCard"
 import { Stars } from "@/components/Stars"
 import { Button } from "@/components/ui/button"
-import { TrendingUp, Target, Trophy, CircleCheckBig } from "lucide-react"
+import { TrendingUp, CircleCheckBig, Sparkles, Telescope, ChevronsRight } from "lucide-react"
 import { CategoryCard } from "@/components/CategoryCard"
 import Image from "next/image"
 
@@ -53,17 +53,17 @@ const Page = () => {
 
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
 						<FeatureCard
-							icon={<Target className="w-8 h-8" />}
+							icon={<TrendingUp className="w-8 h-8" />}
 							title="Choose a Market"
 							description="Browse different categories like crypto, sports, entertainment, weather, politics, and more. Pick any question you want to predict on."
 						/>
 						<FeatureCard
-							icon={<TrendingUp className="w-8 h-8" />}
+							icon={<Telescope className="w-8 h-8" />}
 							title="Make Your Prediction"
 							description="Elect the outcome you believe will happen and place your stake. Your prediction is locked in instantly and recorded on-chain for transparency."
 						/>
 						<FeatureCard
-							icon={<Trophy className="w-8 h-8" />}
+							icon={<Sparkles className="w-8 h-8" />}
 							title="Win Automatically"
 							description="When the event ends, trusted oracles verify the results. If your prediction is correct, your winnings are paid to your wallet instantly—no delays, no manual claims."
 						/>
@@ -79,22 +79,22 @@ const Page = () => {
 						</div>
 
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-10">
-							<div className="p-4 text-center hover:border hover:border-primary hover:bg-secondary-dark transition-colors duration-300 rounded-lg hover:shadow-primary-light shadow-md">
-								<div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+							<div className="px-6 py-3 text-center hover:border hover:border-primary hover:bg-secondary-dark glow-primary-light rounded-lg">
+								<div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-2">
 									<CircleCheckBig className="w-6 h-6" />
 								</div>
 								<h3 className="text-lg font-semibold text-foreground mb-2">Accurate Oracles</h3>
 								<p className="text-sm text-foreground">Reliable data sources for market resolution.</p>
 							</div>
-							<div className="p-4 text-center hover:border hover:border-primary hover:bg-secondary-dark transition-colors duration-300 rounded-lg hover:shadow-primary-light shadow-md">
-								<div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+							<div className="px-6 py-3 text-center hover:border hover:border-primary hover:bg-secondary-dark glow-primary-light rounded-lg">
+								<div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-2">
 									<CircleCheckBig className="w-6 h-6" />
 								</div>
 								<h3 className="text-lg font-semibold text-foreground mb-2">Instant Payouts</h3>
 								<p className="text-sm text-foreground">Rewards distributed automatically.</p>
 							</div>
-							<div className="p-4 text-center hover:border hover:border-primary hover:bg-secondary-dark transition-colors duration-300 rounded-lg hover:shadow-primary-light shadow-md">
-								<div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+							<div className="px-6 py-3 text-center hover:border hover:border-primary hover:bg-secondary-dark glow-primary-light rounded-lg">
+								<div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-2">
 									<CircleCheckBig className="w-6 h-6" />
 								</div>
 								<h3 className="text-lg font-semibold text-foreground mb-2">Fun & Engaging</h3>
@@ -105,8 +105,10 @@ const Page = () => {
 						</div>
 
 						<div className="text-center mt-4">
-							<Button size="lg" className="px-8">
-								Get Started
+							<Button
+								size="lg"
+								className="px-8 hover:border border-secondary-light flex items-center justify-center gap-2 mx-auto">
+								Learn more <ChevronsRight className="w-6 h-6 sm:w-5 sm:h-5 transition-colors" />
 							</Button>
 						</div>
 					</div>
