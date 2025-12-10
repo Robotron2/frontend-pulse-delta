@@ -149,3 +149,11 @@ export interface Activity {
 	timestamp: string
 	status: "success" | "failed"
 }
+
+export interface ActiveMarketPosition {
+	id: string
+	marketId: string //  "#00027"
+	prediction: "Won" | "Lost" | "Pending"
+	amount: string //  "200wDAG"
+	payout: string // "300wDAG"
+}

@@ -4,6 +4,8 @@ import { TrendingUp, Users, Bell, DollarSign, Trophy } from "lucide-react"
 import StatCard from "@/components/profile/StatCard"
 import ProfileStatsContainer from "@/components/profile/ProfileStatsContainer"
 import { currentUser } from "@/data/user"
+import ActiveMarketsTable from "@/components/liquidity/ActiveMarketsTable"
+import { mockActiveMarkets } from "@/data/markets"
 
 export default function LiquidityPage() {
 	const stats = [
@@ -53,7 +55,9 @@ export default function LiquidityPage() {
 				</div>
 			</div>
 
-			<main className="container mx-auto px-4 pt-12 pb-20 grid grid-cols-3 gap-y-8"></main>
+			<main className="container mx-auto px-4 pt-12 pb-20">
+				<ActiveMarketsTable markets={mockActiveMarkets} />
+			</main>
 		</div>
 	)
 }

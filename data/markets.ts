@@ -1,4 +1,4 @@
-import { Activity, LiquidityPosition, Market } from "@/types/types"
+import { ActiveMarketPosition, Activity, LiquidityPosition, Market } from "@/types/types"
 
 export const markets: Market[] = Array.from({ length: 100 }).map((_, idx) => {
 	const statuses = ["trending", "ending-soon", "high-value", "newest", "closed"] as const
@@ -101,4 +101,10 @@ export const mockActivities: Activity[] = [
 		timestamp: "1 day ago",
 		status: "success",
 	},
+]
+
+export const mockActiveMarkets: ActiveMarketPosition[] = [
+	{ id: "1", marketId: "#00027", prediction: "Won", amount: "200wDAG", payout: "300wDAG" },
+	{ id: "2", marketId: "#10096", prediction: "Won", amount: "200wDAG", payout: "300wDAG" },
+	{ id: "3", marketId: "#00090", prediction: "Won", amount: "200wDAG", payout: "300wDAG" },
 ]
