@@ -5,22 +5,18 @@ export default function MarketStats({ market }: MarketStatsProps) {
 		{
 			label: "Liquidity",
 			value: market.liquidity,
-			sub: "wDAG",
 		},
 		{
 			label: "Volume",
 			value: market.volume,
-			sub: "wDAG",
 		},
 		{
 			label: "Traders",
 			value: market.participants.toString(),
-			sub: null,
 		},
 		{
 			label: "Ends in",
 			value: market.duration,
-			sub: null,
 		},
 	]
 
@@ -31,10 +27,7 @@ export default function MarketStats({ market }: MarketStatsProps) {
 					key={index}
 					className="bg-secondary-dark border border-secondary-light rounded-2xl p-6 flex flex-col items-center justify-center text-center h-[110px]">
 					<span className="text-gray-400 text-sm mb-1">{stat.label}</span>
-					<p className="text-xl font-bold text-white tracking-wide">
-						{stat.value}{" "}
-						{stat.sub && <span className="text-base font-normal text-gray-500">{stat.sub}</span>}
-					</p>
+					<p className="text-xl font-bold text-white tracking-wide">{stat.value} </p>
 				</div>
 			))}
 		</div>

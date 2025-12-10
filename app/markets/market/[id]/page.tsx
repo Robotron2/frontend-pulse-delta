@@ -108,11 +108,11 @@ export default function MarketDetailPage({ params }: MarketDetailPageProps) {
 					<div className="inner-chart-wrapper flex flex-col lg:flex-row justify-between items-center gap-8">
 						<div className="chart w-full lg:w-3/4">
 							<div className="mb-8">
-								<h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+								<h1 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4 leading-tight">
 									{market.question}
 								</h1>
 								{market.description && (
-									<p className="text-gray-400 text-lg font-light leading-relaxed border-l-2 border-gray-800 pl-4">
+									<p className="text-primary-foreground text-base font-light leading-relaxed ">
 										{market.description}
 									</p>
 								)}
