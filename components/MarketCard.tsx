@@ -1,16 +1,16 @@
 import { TYPE_BADGE_STYLES } from "@/data/constants"
 import { Market } from "@/types/types"
 import { BarChart3, Clock, Users } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export default function MarketCard({ market }: { market: Market }) {
 	return (
 		<Link href={`/markets/market/${market.id}`} className="block group">
-			<div className="card-wrapper flex flex-col bg-secondary-dark rounded-lg p-4 pt-8 hover:border hover:border-primary glow-primary-light">
-				<div className="card-title text-center mb-4 font-bold text-lg">
-					<h2>
-						<span>Logo</span> PulseDelta Market
-					</h2>
+			<div className="card-wrapper flex flex-col bg-secondary-dark rounded-lg p-4 pt-6 hover:border hover:border-primary glow-primary-light">
+				<div className="card-title flex items-center justify-center mb-4 font-bold text-lg">
+					<Image src={"/logo.png"} alt="logo" width={60} height={60} className="mx-aut" />
+					<h2>PulseDelta Market</h2>
 				</div>
 
 				{/* Card with Sawtooth Border Background */}

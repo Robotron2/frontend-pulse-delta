@@ -20,11 +20,11 @@ const Page = () => {
 		<div className="min-h-screen cosmic-gradient">
 			{/* <Navbar /> */}
 
-			<main className="pt-12">
+			<main className="pt-16">
 				{/* Hero Section */}
 				<section className="relative w-full py-16 overflow-hidden">
 					<Stars />
-					<div className="container mx-auto px-4 text-center relative z-20">
+					<div className="container mx-auto px-4 text-center relative z-20 pt-6">
 						<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6">
 							Predict the Future
 						</h1>
