@@ -1,36 +1,41 @@
 "use client"
 
 import { markets } from "@/data/markets"
-import { ChevronLeft, Copy, Check } from "lucide-react"
+import { Check, ChevronLeft, Copy } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState, use } from "react"
 import { notFound } from "next/navigation"
-import BinaryMarketView from "@/components/market-details/BinaryMarketView"
-import MultiOutcomeMarketView from "@/components/market-details/MultiOutcomeMarketView"
-import ScalarMarketView from "@/components/market-details/ScalarMarketView"
 import MarketChart from "@/components/market-details/MarketChart"
 import MarketStats from "@/components/market-details/MarketStats"
+import MarketActionButtons from "@/components/market-details/MarketActionButtons"
+import TradeModal from "@/components/market-details/TradeModal"
 import { MarketDetailPageProps } from "@/types/types"
 
 export default function MarketDetailPage({ params }: MarketDetailPageProps) {
 	const router = useRouter()
-	const [copied, setCopied] = useState(false)
 
-	// Unwrap params using React.use()
 	const { id } = use(params)
-
-	// Find the market
 	const market = markets.find((m) => m.id === parseInt(id))
 
-	// If market not found, show 404
-	if (!market) {
-		notFound()
+	const [copied, setCopied] = useState(false)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [selectedOption, setSelectedOption] = useState<string | null>(null)
+
+	if (!market) notFound()
+
+	const handleOptionSelect = (option: string) => {
+		setSelectedOption(option)
+		setIsModalOpen(true)
+	}
+
+	const handleTradeShare = () => {
+		setSelectedOption(market.outcomes ? market.outcomes[0].option : "Yes")
+		setIsModalOpen(true)
 	}
 
 	const handleCopyLink = async () => {
-		const url = window.location.href
 		try {
-			await navigator.clipboard.writeText(url)
+			await navigator.clipboard.writeText(window.location.href)
 			setCopied(true)
 			setTimeout(() => setCopied(false), 2000)
 		} catch (err) {
@@ -38,69 +43,105 @@ export default function MarketDetailPage({ params }: MarketDetailPageProps) {
 		}
 	}
 
-	const renderMarketType = () => {
-		switch (market.marketType) {
-			case "binary":
-				return <BinaryMarketView market={market} />
-			case "multi":
-				return <MultiOutcomeMarketView market={market} />
-			case "scalar":
-				return <ScalarMarketView market={market} />
-			default:
-				return <BinaryMarketView market={market} />
-		}
-	}
-
 	return (
-		<div className="min-h-screen cosmic-gradient">
-			<main className="container pt-20 px-4 pb-10">
+		<div className="min-h-screen cosmic-gradient px-4 pb-20">
+			<main className="container pt-24 px-4">
 				{/* Header Actions */}
-				<div className="flex justify-between items-center mb-6 mt-10">
+				<div className="flex justify-between items-center mb-8">
+					{/* BACK BUTTON */}
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary-foreground transition text-foreground hover:text-white">
-						<ChevronLeft className="w-4 h-4" />
-						Back
+						className="
+            group flex items-center justify-center gap-2 
+            p-2 sm:px-4 sm:py-2 rounded-xl border border-transparent 
+            text-gray-400 transition-all duration-300
+            hover:border-primary hover:text-primary hover:bg-white/5
+        "
+						aria-label="Go Back">
+						<ChevronLeft className="w-6 h-6 sm:w-5 sm:h-5 transition-colors" />
+						{/* Text hidden on mobile, visible on small screens and up */}
+						<span className="hidden sm:inline font-medium">Back</span>
 					</button>
 
-					<button
-						onClick={handleCopyLink}
-						className="flex items-center gap-2 px-4 py-2 rounded-lg border border-secondary-foreground transition text-foreground hover:text-white">
-						{copied ? (
-							<>
-								<Check className="w-4 h-4 text-success" />
-								<span className="text-success">Copied!</span>
-							</>
-						) : (
-							<>
-								<Copy className="w-4 h-4" />
-								Copy Link
-							</>
-						)}
-					</button>
+					<div className="flex items-center gap-3 sm:gap-4">
+						{/* COPY LINK BUTTON */}
+						<button
+							onClick={handleCopyLink}
+							className="
+                group flex items-center justify-center gap-2 
+                p-2 sm:px-4 sm:py-2 rounded-xl border border-transparent 
+                text-gray-400 transition-all duration-300
+                hover:border-primary hover:text-primary hover:bg-white/5
+            "
+							aria-label="Copy Link">
+							{copied ? (
+								<>
+									<Check className="w-5 h-5 sm:w-4 sm:h-4 text-primary" />
+									<span className="hidden sm:inline text-primary font-medium">Copied</span>
+								</>
+							) : (
+								<>
+									<Copy className="w-5 h-5 sm:w-4 sm:h-4 transition-colors" />
+									<span className="hidden sm:inline font-medium">Copy Link</span>
+								</>
+							)}
+						</button>
+
+						{/* TRADE SHARE BUTTON - Kept full width for CTA visibility */}
+						<button
+							onClick={handleTradeShare}
+							className="
+                bg-primary hover:bg-primary-dark
+                text-white font-bold text-sm 
+                px-4 py-2.5 sm:px-6 
+                rounded-xl shadow-[0_4px_14px_0_rgba(249,115,22,0.39)] 
+                transition-all transform active:scale-95 whitespace-nowrap
+            ">
+							Trade Share
+						</button>
+					</div>
 				</div>
 
-				{/* Market Title and Question */}
-				<div className="mb-8">
-					<h1 className="text-3xl md:text-4xl font-bold text-white mb-4">{market.question}</h1>
-					{market.description && <p className="text-gray-400 text-lg">{market.description}</p>}
-				</div>
+				{/* Main Content */}
 
-				{/* Main Content Grid */}
-				<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-					{/* Left Column - Chart and Stats */}
-					<div className="lg:col-span-2 space-y-6">
-						{/* Price Chart */}
-						<MarketChart market={market} />
+				<div className="wrapper flex flex-col gap-8">
+					<div className="inner-chart-wrapper flex flex-col lg:flex-row justify-between items-center gap-8">
+						<div className="chart w-full lg:w-3/4">
+							<div className="mb-8">
+								<h1 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4 leading-tight">
+									{market.question}
+								</h1>
+								{market.description && (
+									<p className="text-primary-foreground text-base font-light leading-relaxed ">
+										{market.description}
+									</p>
+								)}
+							</div>
 
-						{/* Market Stats */}
-						<MarketStats market={market} />
+							{/* Chart Container */}
+							<div className="w-full mb-8 min-h-[300px] md:min-h-[400px]">
+								<MarketChart market={market} />
+							</div>
+						</div>
+						<div className="stats w-2/3 lg:w-1/4">
+							<MarketStats market={market} />
+						</div>
 					</div>
 
-					{/* Right Column - Trading Interface */}
-					<div className="lg:col-span-1">{renderMarketType()}</div>
+					<div className="actions w-full">
+						<MarketActionButtons market={market} onOptionSelect={handleOptionSelect} />
+					</div>
 				</div>
 			</main>
+			{/* Trade Modal */}
+			{isModalOpen && (
+				<TradeModal
+					isOpen={isModalOpen}
+					onClose={() => setIsModalOpen(false)}
+					market={market}
+					selectedOutcome={selectedOption}
+				/>
+			)}
 		</div>
 	)
 }

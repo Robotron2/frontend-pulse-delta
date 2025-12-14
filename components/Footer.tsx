@@ -13,24 +13,26 @@ export const Footer = () => {
 					<div className="flex flex-wrap justify-center gap-6 text-sm text-foreground md:text-muted-foreground">
 						<button className="hover:text-foreground transition-colors">Terms</button>
 						<button className="hover:text-foreground transition-colors">Policy</button>
-						<button className="hover:text-foreground transition-colors">Doc</button>
+						<button className="hover:text-foreground transition-colors">Docs</button>
 						<button className="hover:text-foreground transition-colors">Support</button>
 					</div>
 
-					<div className="flex items-center gap-6">
-						<span className="text-sm text-muted-foreground mr-4">Contact Us</span>
-						<Link href={"/"} className="w-8 h-8 rounded-full flex items-center justify-center">
-							<Image src={"/google.png"} alt="google-icon" width={29} height={29} />
-						</Link>
-						<Link href={"/"} className="w-8 h-8 rounded-full flex items-center justify-center">
-							<Image src={"/md.png"} alt="medium-icon" width={30} height={31} />
-						</Link>
-						<Link href={"/"} className="w-8 h-8 rounded-full flex items-center justify-center">
-							<Image src={"/tg.png"} alt="telegram-icon" width={29} height={29} />
-						</Link>
-						<Link href={"/"} className="w-8 h-8 rounded-full flex items-center justify-center">
-							<Image src={"/x.png"} alt="x-icon" width={29} height={29} />
-						</Link>
+					<div className="flex flex-col items-center gap-6">
+						<span className="text-sm text-primary-foreground mr-4">Contact Us</span>
+						<div className="flex items-center gap-6">
+							<Link href={"/"} className="w-8 h-8 rounded-full flex items-center justify-center">
+								<Image src={"/google.png"} alt="google-icon" width={29} height={29} />
+							</Link>
+							<Link href={"/"} className="w-8 h-8 rounded-full flex items-center justify-center">
+								<Image src={"/md.png"} alt="medium-icon" width={30} height={31} />
+							</Link>
+							<Link href={"/"} className="w-8 h-8 rounded-full flex items-center justify-center">
+								<Image src={"/tg.png"} alt="telegram-icon" width={29} height={29} />
+							</Link>
+							<Link href={"/"} className="w-8 h-8 rounded-full flex items-center justify-center">
+								<Image src={"/x.png"} alt="x-icon" width={29} height={29} />
+							</Link>
+						</div>
 					</div>
 				</div>
 

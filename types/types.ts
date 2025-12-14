@@ -93,3 +93,67 @@ export interface CreateMarketContextType {
 	handleBack: () => void
 	handleSubmit: (e: React.FormEvent) => void
 }
+
+export interface StatCardProps {
+	label: string
+	value: string
+	icon: React.ReactNode
+	iconBg: string
+}
+
+export interface LiquidityPositionCardProps {
+	marketId: number
+	question: string
+	amount: string
+	shares: number
+	percentEarned: string
+	status: "active" | "closed"
+}
+
+export interface ActivityItemProps {
+	type: "trade" | "create" | "liquidity" | "resolve"
+	description: string
+	amount: string
+	timestamp: string
+	status: "success" | "failed" | "pending"
+}
+
+//Users
+export interface User {
+	id: string
+	address: string
+	username: string
+	avatar?: string
+	totalVolume: string
+	marketsTraded: number
+	marketsCreated: number
+	lpValue: string
+	joinedAt: string
+}
+
+export interface LiquidityPosition {
+	id: string
+	marketId: number
+	question: string
+	amount: string
+	shares: number
+	status: string
+	percentEarned: string
+}
+
+export interface Activity {
+	id: string
+	type: "trade" | "create"
+	description: string
+	amount: string
+	timestamp: string
+	status: "success" | "failed"
+}
+
+export interface ActiveMarketPosition {
+	id: string
+	marketId: string //  "#00027"
+	prediction: "Won" | "Lost" | "Pending"
+	amount: string //  "200wDAG"
+	payout: string // "300wDAG"
+}
