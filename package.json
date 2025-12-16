@@ -25,7 +25,7 @@
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"lucide-react": "^0.462.0",
-		"next": "16.0.3",
+		"next": "^15.5.9",
 		"next-themes": "^0.3.0",
 		"porto": "^0.2.37",
 		"react": "^18.3.1",
@@ -35,6 +35,8 @@
 		"sonner": "^1.7.4",
 		"tailwind-merge": "^2.6.0",
 		"tailwindcss-animate": "^1.0.7",
+		"tap": "^21.5.0",
+		"tape": "^5.9.0",
 		"viem": "^2.42.1",
 		"wagmi": "^3.1.0"
 	},
